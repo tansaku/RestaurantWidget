@@ -1,0 +1,27 @@
+<html>
+  <head>
+  <title>Booking Widget</title>
+
+
+  <body>
+    <h1>Booking Widget</h1>
+    <div id='restaurants'>
+    </div>
+
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $.get('http://localhost:4567/',function(restaurants){
+          $('#restaurants').append('<p> total entries: '+restaurants.total_entries+'</p>')
+          $('#restaurants').append('<p> per page: '+restaurants.per_page+'</p>')
+          $('#restaurants').append('<ul>');
+          $.each(restaurants.restaurants, function(index, value){
+            $('#restaurants').append('<li>' + index + ' ' + value.name + '</li>');
+          })
+          $('#restaurants').append('</ul>');
+        })
+      });
+    </script>
+  </body>
+
+</html>
